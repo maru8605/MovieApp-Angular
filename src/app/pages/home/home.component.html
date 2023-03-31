@@ -1,7 +1,16 @@
-<p>home works!</p>
+<h1>Cartelera</h1>
 <div class="col" *ngIf="movies.length > 0">
   <div class="row">
     <app-slider [movies]="movies"></app-slider>
+
+  </div>
+</div>
+
+<h1 class="mt-5">Últimas Películas</h1>
+
+<div class="col" *ngIf="movies.length > 0">
+  <div class="row">
+    <app-peliculas-poster-grid [movies]="movies"></app-peliculas-poster-grid>
 
   </div>
 </div>
