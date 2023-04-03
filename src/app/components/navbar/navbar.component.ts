@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Movie } from 'src/app/interfaces/now-playing-response';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  buscarPelicula(texto: string) {
+    texto = texto.trim()
+
+    if (texto.length === 0) {
+      return
+    }
+
+    this.router.navigate(['/search', texto])
   }
-
 }
