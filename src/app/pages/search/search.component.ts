@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { Movie } from 'src/app/interfaces/now-playing-response';
 import { MoviesService } from 'src/app/services/movies.service';
 

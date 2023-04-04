@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit} from '@angular/core';
 import { Movie } from 'src/app/interfaces/now-playing-response';
-import { Swiper } from 'swiper/bundle'
+import { Swiper } from 'swiper/bundle';
 
 
 

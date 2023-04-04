@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
+import { CreditsResponse } from '../interfaces/credits-response';
+import { MovieResponse } from '../interfaces/movie-response';
 import { Movie, NowPlayingResponse } from '../interfaces/now-playing-response';
 
 @Injectable({
@@ -16,7 +18,7 @@ export class MoviesService {
   get params() {
     return {
       api_key: 'a2c5b0aa63f4810637029fdd61a1549b',
-      lenguage: 'es-ES',
+      lenguage: 'es-Es',
       page: this.carteleraPages.toString(),
     };
   }
@@ -49,15 +51,32 @@ export class MoviesService {
     if (this.cargando) {
       return of([]);
     }
-    console.log('texto', text)
-    const params = { ...this.params, query:text};
-    console.log('params', params)
+    console.log('texto', text);
+    const params = { ...this.params, query: text };
+    console.log('params', params);
     //https://api.themoviedb.org/3/search/movie?api_key=a2c5b0aa63f4810637029fdd61a1549b&language=en-US&query=avengers&page=1&include_adult=false
     // https://api.themoviedb.org/3/search/movie
     return this.http
       .get<NowPlayingResponse>(`${this.baseUrl}search/movie`, { params })
+      .pipe(map((resp) => resp.results));
+  }
+
+  getPeliculaDetalle(id: string) {
+    return this.http
+      .get<MovieResponse>(`${this.baseUrl}/movie/${id}`, {
+        params: this.params,
+      })
+      .pipe(catchError((err) => of(null)));
+  }
+
+  getCast(id: string) {
+    return this.http
+      .get<CreditsResponse>(`${this.baseUrl}/movie/${id}/credits`, {
+        params: this.params,
+      })
       .pipe(
-        map((resp) => resp.results),
+        map((resp) => resp.cast),
+        catchError((err) => of([]))
       );
   }
 }

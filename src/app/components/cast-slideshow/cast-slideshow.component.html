@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col img-container">
+    <div *ngFor="let actor of cast" class=" text-white text-center px-2 col-md-2 col-sm-3 col-xs-4">
+        <img [src]="actor.profile_path! | poster" 
+        [alt]="actor.name"
+        class="img-thumbnail"/>
+      {{actor.name}}
+    </div>
+  </div>
+</div>

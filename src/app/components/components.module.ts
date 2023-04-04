@@ -6,6 +6,7 @@ import { SliderComponent } from './slider/slider.component';
 import { PeliculasPosterGridComponent } from './peliculas-poster-grid/peliculas-poster-grid.component';
 import {RatingModule } from 'ng-starrating'
 import { PipesModule } from '../pipes/pipes.module';
+import { CastSlideshowComponent } from './cast-slideshow/cast-slideshow.component';
 
 
 @NgModule({
@@ -13,9 +14,15 @@ import { PipesModule } from '../pipes/pipes.module';
     NavbarComponent,
     SliderComponent,
     PeliculasPosterGridComponent,
+    CastSlideshowComponent,
   ],
   imports: [CommonModule, RouterModule, RatingModule, PipesModule],
-  exports: [NavbarComponent, SliderComponent, PeliculasPosterGridComponent],
+  exports: [
+    NavbarComponent,
+    SliderComponent,
+    PeliculasPosterGridComponent,
+    CastSlideshowComponent,
+  ],
 })
 export class ComponentsModule {}
 //recordar exportar el componente si este va a ser usado en otro lugar 
